@@ -1,0 +1,52 @@
+*{margin: 0px;
+    padding: 0px;}
+::-webkit-scrollbar {
+    display: none;
+}
+
+@font-face{
+    font-family: 'Rimma-Sans';
+    src: url(fonts/RIMMA_SANS-BOLD.TTF);
+}
+@font-face {
+    font-family: 'Unbounded';
+    src: url(fonts/Unbounded-Regular.ttf);
+}
+
+header {
+    position: relative;  
+    z-index: 2;       
+}
+
+
+.fon1{
+    display: grid; justify-self: center;
+    position: absolute; top: 0px;
+    z-index: 0;
+    user-select: none; -webkit-user-drag: none;
+    max-width: 1920px;
+    width: 1920px;
+    opacity: 1;
+
+}
+
+#zagolovok{
+    margin: 35px; margin-left: 60px;
+    font-size: 40px; font-family: 'Rimma-Sans';
+    letter-spacing: 2px; z-index: 1;
+}
+
+#navig{
+    display: flex; gap: 55px;
+    letter-spacing: 1px;
+    text-align: center; position: absolute; right: 3.6%; top: 3%;
+    font-size: 30px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none; z-index: 1;
+}
+
+#year{
+    position: absolute; top: 270px; margin-left: 70px; 
+    letter-spacing: 2px; line-height: 120%;
+    font-size: 55px; font-family: 'Unbounded';
+    z-index: 1
+}
