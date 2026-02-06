@@ -40,7 +40,7 @@ a {
     position: relative;
     width: 500px;
     color: #FFFFFF;
-    margin: 35px; margin-left: 40px;
+    margin: 35px; margin-left: 50px;
     font-size: 40px; font-family: 'Rimma-Sans';
     letter-spacing: 2px; z-index: 1;
     transition: all 0.3s ease;
@@ -84,9 +84,36 @@ a {
     position: absolute; top: 270px; margin-left: 50px; 
     letter-spacing: 2px; line-height: 120%;
     font-size: 55px; font-family: 'Unbounded';
-    z-index: 1
+    z-index: 1; transition: all 0.3s ease;
 }
+
 /* //////////////////////////////////// */
+
+@media (min-width: 2000px) {
+    #year{
+        font-size: 60px;
+        left: 50px;
+    }
+    #zagolovok{
+        font-size: 45px;
+        left: 50px
+    }
+}
+@media (min-width: 2500px) {
+    #zagolovok{
+        font-size: 50px;
+        width: 1000px;
+    }
+}
+@media (min-width: 3000px) {
+    #zagolovok{
+        font-size: 60px;
+        width: 1500px;
+    }
+}
+
+/* //////////////////////////////////// */
+
 @keyframes line{
     0%{
         border-bottom: 3px solid #2B2DB1;
@@ -122,6 +149,8 @@ a {
         opacity: 1;
         transform: translateY(0px);}
 }
+
+/* //////////////////////////////////// */
 
 #content-box1{
     position: absolute; top: 817px;
@@ -235,7 +264,7 @@ h1{
     letter-spacing: 2px;
 }
 
-/* ///////////////// */
+/* //////////////////////////////////// */
 
 #fon2{
     border: #2B2DB1 4px solid;
@@ -267,7 +296,7 @@ h1.map-start{
     font-size: 28px; font-family: 'Unbounded';
 }
 
-/* /////////////// */
+/* //////////////////////////////////// */
 
 #numbers{
     letter-spacing: 1px;
@@ -320,7 +349,7 @@ h1.map-start{
     width: 2000px;
 }
 
-/* ///////////////// */
+/* //////////////////////////////////// */
 
 
 #map{
@@ -333,5 +362,3 @@ h1.map-start{
 }
 
 
-
-/* //////////////// */
