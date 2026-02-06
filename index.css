@@ -1,7 +1,6 @@
 *{margin: 0px;
     padding: 0px;}
 
-/* body{background-color: #2b2db1c5;} */
 body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1);}
 
 ::-webkit-scrollbar {
@@ -17,8 +16,7 @@ body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1);}
     src: url(fonts/Unbounded-Regular.ttf);
 }
 
-header {
-    position: relative;  
+header { 
     z-index: 2;       
 }
 
@@ -39,12 +37,14 @@ a {
 }
 
 #zagolovok{
+    position: relative;
     width: 500px;
     color: #FFFFFF;
-    margin: 35px; margin-left: 60px;
+    margin: 35px; margin-left: 40px;
     font-size: 40px; font-family: 'Rimma-Sans';
     letter-spacing: 2px; z-index: 1;
     transition: all 0.3s ease;
+    animation: zag 0.4s ease-out forwards
 }
 #zagolovok:hover{
     color: #ffffffce; 
@@ -52,23 +52,76 @@ a {
 }
 
 #navig{
+    animation: navig 0.35s ease-out forwards;
     color: #FFFFFF;
-    display: flex; gap: 55px;
     letter-spacing: 1px;
+    display: grid;
+    grid-template-columns: auto auto auto; 
+    justify-content: center; 
+    gap: 60px;
     text-align: center; position: absolute; right: 4%; top: 3%;
-    font-size: 30px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 32px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     user-select: none; z-index: 1;
 }
 
+.glavn, 
+.forum,
+.translate{
+    height: 33px;
+    transition: all 0.3s ease;
+}
+.glavn:hover, 
+.forum:hover,
+.translate:hover{
+    animation: line 0.4s ease forwards;
+    scale: 1.2;
+    color: #ffffff;}
 
 #year{
+    user-select: none;
+    animation: zag 0.4s ease-out forwards;
     color: #FFFFFF;
-    position: absolute; top: 270px; margin-left: 70px; 
+    position: absolute; top: 270px; margin-left: 50px; 
     letter-spacing: 2px; line-height: 120%;
     font-size: 55px; font-family: 'Unbounded';
     z-index: 1
 }
 /* //////////////////////////////////// */
+@keyframes line{
+    0%{
+        border-bottom: 3px solid #2B2DB1;
+        width: 0%;
+    }
+    100%{
+        border-bottom: 3px solid #2B2DB1;
+        width: 100%;
+    }
+}
+@keyframes zag {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+    70% {
+        opacity: 0.7;
+        transform: translateX(45px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(10px);}
+}
+@keyframes navig{
+    0% {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    70% {
+        opacity: 0.7;
+        transform: translateY(10px);}
+    100% {
+        opacity: 1;
+        transform: translateY(0px);}
+}
 
 #content-box1{
     position: absolute; top: 817px;
@@ -82,6 +135,7 @@ a {
 }
 
 h1{
+    user-select: none;
     color: #2B2DB1; 
     font-size: 40px; font-family: 'Rimma-Sans';
     text-align: center;
@@ -117,19 +171,27 @@ h1{
     height: 410px;
     opacity: 1;
     border-radius: 15px;
+    transition: all 0.3s ease;
+}
+.img1:hover{
+    scale: 1.05;
 }
 .img2{
     position: absolute; top: 1080px; left: 450px;
     width: 510px;
     opacity: 1;
     border-radius: 15px;
+    transition: all 0.3s ease;
+}
+.img2:hover{
+    scale: 1.04;
 }
 
 .info2{
     position: absolute;
     left: 50%; transform: translateX(-50%);
     color: #2B2DB1;
-    position: relative; top: -255px;
+    position: relative; top: 5px;
     font-family: 'Unbounded';
     font-size: 30px;
     letter-spacing: 2px;
@@ -146,14 +208,14 @@ h1{
     letter-spacing: 1px;
     margin: 20px;
     color: #B3B3B3;
-    position: absolute; top: 220px; left: 442px;
+    position: absolute; top: 210px; left: 442px;
     font-size: 20px; font-family: 'Unbounded';
 }
 .yak{
     letter-spacing: 1px;
     margin: 20px;
     color: #B3B3B3;
-    position: absolute; top: 1033px; left: 442px;
+    position: absolute; top: 1023px; left: 442px;
     font-size: 20px; font-family: 'Unbounded';
 }
 
@@ -177,7 +239,7 @@ h1{
 
 #fon2{
     border: #2B2DB1 4px solid;
-    left: -3px;
+    left: -5px;
     display: grid; justify-content: center;
     position: absolute; bottom: -862px;
     z-index: -1;
@@ -188,7 +250,7 @@ h1{
 }
 #content-box2{
     letter-spacing: 1px;
-    position: absolute; top: 3490px;
+    position: absolute; top: 3390px;
     display: grid; justify-self: center;
     border: #2B2DB1 3px solid; border-top-left-radius: 62px; border-top-right-radius: 62px;
     background-color: #FFFFFF;
@@ -206,6 +268,60 @@ h1.map-start{
 }
 
 /* /////////////// */
+
+#numbers{
+    letter-spacing: 1px;
+    font-size: 40px;
+    font-family: 'Rimma-Sans';
+    color: #FFFFFF;
+}
+#narod{
+    font-size: 100px; color: #2B2DB1;
+    position: absolute; left: 12%; bottom: -210px;
+    transition: all 0.3s ease;
+}
+#narod:hover{
+    scale: 1.1;
+    color: #3537cf
+}
+.narodtxt{
+    letter-spacing: 1px;
+    position: absolute; left: 27.1%; bottom: -183px;
+}
+
+
+#lang{
+    font-size: 100px; color: #2B2DB1;
+    position: absolute; left: 12%; bottom: -385px;
+    transition: all 0.3s ease;
+}
+#lang:hover{
+    scale: 1.08;
+    color: #3537cf
+}
+.langtxt{
+    letter-spacing: 1px;
+    position: absolute; left: 28.7%; bottom: -358px;
+}
+
+
+#time{
+    font-size: 100px;
+    position: absolute; left: 16%; bottom: -555px;
+    transition: all 0.3s ease;
+}
+#time:hover{
+    scale: 1.17;
+    color: #dfdddd;
+}
+.timetxt{
+    letter-spacing: 1px;
+    position: absolute; left: 21.6%; bottom: -525px;
+    width: 2000px;
+}
+
+/* ///////////////// */
+
 
 #map{
     border: #2B2DB1 3px solid;
