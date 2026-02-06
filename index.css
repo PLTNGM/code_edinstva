@@ -1,5 +1,9 @@
 *{margin: 0px;
     padding: 0px;}
+
+/* body{background-color: #2b2db1c5;} */
+body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1);}
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -172,7 +176,8 @@ h1{
 /* ///////////////// */
 
 #fon2{
-    border-top: #2B2DB1 4px solid;
+    border: #2B2DB1 4px solid;
+    left: -3px;
     display: grid; justify-content: center;
     position: absolute; bottom: -862px;
     z-index: -1;
