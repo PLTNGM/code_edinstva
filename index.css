@@ -18,6 +18,11 @@ header {
     z-index: 2;       
 }
 
+a {
+    color: inherit;      
+    text-decoration: none;  
+}
+
 .fon1{
     display: grid; justify-self: center;
     position: fixed; top: 0px;
@@ -30,10 +35,16 @@ header {
 }
 
 #zagolovok{
+    width: 500px;
     color: #FFFFFF;
     margin: 35px; margin-left: 60px;
     font-size: 40px; font-family: 'Rimma-Sans';
     letter-spacing: 2px; z-index: 1;
+    transition: all 0.3s ease;
+}
+#zagolovok:hover{
+    color: #ffffffce; 
+    scale: 1.1;
 }
 
 #navig{
@@ -44,6 +55,7 @@ header {
     font-size: 30px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     user-select: none; z-index: 1;
 }
+
 
 #year{
     color: #FFFFFF;
