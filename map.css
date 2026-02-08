@@ -1,9 +1,14 @@
-.Active-region {
-    fill: #ff4d4d; /* Тот самый красный */
-    cursor: pointer;
+@font-face{
+    font-family: 'Rimma-Sans';
+    src: url(fonts/RIMMA_SANS-BOLD.TTF);
 }
 
-/* Эффект только для активных регионов */
+.Active-region {
+    fill: #ff4d4d;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
 .Active-region:hover {
     fill: #cc0000;
     transition: all 0.2s ease;
@@ -11,47 +16,222 @@
 
 #focus-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0); /* Сначала прозрачный */
-    display: none; /* Оставляем для JS, но будем менять opacity */
+    top: 0;
+    left: -15%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    backdrop-filter: blur(0px); /* Начинаем с нуля */
-    transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    opacity: 0; /* Добавляем opacity для плавности */
+    transition: opacity 0.5s ease, backdrop-filter 0.5s ease;
 }
 
 #focus-overlay.active {
-    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    opacity: 1;
+    backdrop-filter: blur(8px);
 }
 
 #focus-content {
-    transform: translateY(-100vh); /* Прячем высоко вверху */
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Эффект "прыжка" в конце */
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                opacity 0.4s ease;
     display: flex;
-    flex-direction: row; /* Карта слева, инфа справа */
+    flex-direction: row;
     align-items: center;
     gap: 40px;
-    background: #1a1a1a; /* Темная подложка для инфы */
     padding: 30px;
     border-radius: 20px;
-    border: 1px solid #ff4d4d;
+}
+
+#focus-overlay.active #focus-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
 #focused-region-svg {
-    width: 400px; /* Увеличиваем наш путь до нормальных размеров */
-    height: 400px;
-    fill: #ff4d4d;
-    filter: drop-shadow(0px 0px 20px rgba(255, 77, 77, 0.6));
+    width: 850px;
+    height: 850px;
+    position: fixed;
+    left: -900%;
+    fill: #2B2DB1;
+    stroke: #ffffff; /* Цвет обводки */
+    stroke-width: 0.5px; /* Толщина */
+    stroke-linejoin: round; /* Скругленные углы */
+    stroke-miterlimit: 10; /* Чтобы не ломались острые углы */
+    filter: drop-shadow(0px 0px 20px rgba(43, 45, 177, 0.6));
+    transform-origin: center;
+
+    opacity: 0;
+    visibility: hidden;
 }
 
-/* Когда контент активен */
-#focus-overlay.active #focus-content {
-    transform: translateY(0); /* Возвращаем в центр */
+#region-info {
+    position: fixed;
+    bottom: -500%;
+    left: 400%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(43, 45, 177, 0.6);
+    width: 600px;
+    height: 700px;
+    border-radius: 25px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    display: flex;
+    padding-bottom: 0.5%;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-#focus-overlay.active {
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px); /* Увеличил до 8px для пущей солидности */
+
+#region-name {
+    user-select: none;
+    color: #2B2DB1; 
+    font-family: 'Rimma-Sans';
+    position: fixed;
+    top: 5%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 80%;
+    background: #2B2DB1;
+    border: none;
+    color: #2B2DB1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #2B2DB1;
+    transform: rotate(90deg);
+}
+
+.back-btn {
+    position: fixed;
+    top: 1%;
+    left: 105%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(43, 45, 177, 0.6);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    padding-bottom: 0.5%;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.back-btn:hover {
+    background: rgba(43, 45, 177, 0.3);
+    border-color: rgba(43, 45, 177, 0.5);
+    transform: translateX(-5px) scale(1.05);
+    box-shadow: 
+        0 12px 40px rgba(43, 45, 177, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.back-btn::before {
+    font-weight: bold;
+}
+
+/* Анимации*/
+@keyframes slideIn {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInInfo {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Анимации ЗАКРЫТИЯ (твои новые) */
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-150px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(150px);
+        opacity: 0;
+    }
+}
+
+@keyframes regionPulse {
+    0% {
+        filter: drop-shadow(0px 0px 20px rgba(43, 45, 177, 0.6));
+    }
+    100% {
+        filter: drop-shadow(0px 0px 20px rgba(43, 45, 177, 2));
+    }
+}
+
+/* При ОТКРЫТИИ - используем открывающие анимации */
+#focus-overlay.active #focused-region-svg {
+    visibility: visible;
+    opacity: 1;
+    animation: 
+        slideIn 0.4s ease-out forwards,
+        regionPulse 2s infinite alternate 0.4s; /* pulse после slideIn */
+    }
+
+#focus-overlay.active #region-info {
+    animation: slideInInfo 0.4s ease-out forwards;
+}
+
+/* При ЗАКРЫТИИ - используем закрывающие анимации */
+#focus-overlay.closing #focused-region-svg {
+    animation: slideOutLeft 0.4s ease-in forwards;
+}
+
+#focus-overlay.closing #region-info {
+    animation: slideOutRight 0.4s ease-in 0.05s forwards;
 }
