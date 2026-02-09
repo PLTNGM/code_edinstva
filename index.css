@@ -171,14 +171,14 @@ h1{
     margin: 20px; padding-top: 30px;
 }
 .line{
-    width: 513px;
+    width: 543px;
     height: 0px;
     border-top: 4px solid #2B2DB1;
     position: absolute; left: 50%; top: 160px;
     transform: translateX(-50%);
 }
 .line2{
-    width: 513px;
+    width: 543px;
     height: 0px;
     border-top: 4px solid #2B2DB1;
     position: absolute; left: 50%; top: 1830px;
@@ -278,6 +278,7 @@ h1{
     opacity: 1;
 }
 #content-box2{
+    color: #2B2DB1;
     letter-spacing: 1px;
     position: absolute; top: 3390px;
     display: grid; justify-self: center;
@@ -285,7 +286,7 @@ h1{
     background-color: #FFFFFF;
     max-width: 1920px;
     width: 1918px;
-    height: 1920px;
+    height: 2270px;
     z-index: 3;
 }
 
@@ -357,8 +358,101 @@ h1.map-start{
     border-radius: 30px;
     box-shadow: 3px 3px 2px 4px #5457ee;
     position: absolute;
-    top: 360px; left: 50%; transform: translateX(-50%);
-    width: 1170px; height: 700px;
+    top: 340px; left: 50%; transform: translateX(-50%);
+    width: 1070px; height: 650px;
 }
 
 
+.regbox{
+    line-height: 43px;
+    margin-top: 380px;
+    display: grid; justify-self: center;
+}
+.region{
+    user-select: auto;
+    text-align: center;
+    width: 804px;
+    font-size: 28px; font-family: 'Unbounded';
+    margin: 15px;
+}
+
+.line3{
+    width: 543px;
+    height: 0px;
+    border-top: 4px solid #2B2DB1;
+    position: absolute; left: 50%; top: 1290px;
+    transform: translateX(-50%);
+}
+
+.qwiztop{
+    margin-top: -360px;
+}
+
+#qwiz{
+    letter-spacing: normal;
+    position: absolute; left: 50%; top: 1540px;
+    transform: translateX(-50%);
+    line-height: 32px;
+    font-size: 29px; font-family: 'Unbounded';
+    text-align: center;
+    width: 757px;
+    color: #000000;
+}
+
+#qwizform{
+    text-align: start;
+    user-select: none;
+    font-size: 28px;
+    line-height: 38px;
+    position: absolute;
+    left: 49%; top: 150px;
+    transform: translateX(-50%);
+}
+
+#qwizform input[type="radio"] {
+  accent-color: #2B2DB1;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+#qwizform input[type="radio"]:hover{
+    scale: 1.15;
+}
+#qwizform input[type="radio"]:focus{
+    animation: qwiz 0.3s ease-out forwards
+}
+
+@keyframes qwiz{
+    0%{
+        scale: 1.15;
+    }
+    50%{
+        scale: 1.35;
+    }
+    100%{
+        scale: 1.15;
+    }
+}
+
+#qwizform label {
+  vertical-align: middle;
+}
+
+#submit{
+    scale: 1.05;
+    color: #2B2DB1;
+    font-size: 19px; font-family: 'Rimma-Sans';
+    position: absolute; left: -33px;
+    margin: 38px; 
+    height: 60px; width: 200px;
+    border: #2B2DB1 3px solid;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+#submit:hover{
+    scale: 1.1;
+    color: #FFFFFF;
+    background-color: #2B2DB1;
+}

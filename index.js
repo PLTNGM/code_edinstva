@@ -45,3 +45,19 @@ window.addEventListener('scroll', function() {
             num270()
     }
 });
+
+
+// QWIZ НЕЕЕЕТ
+document.getElementById('submit')
+
+let ques = document.getElementsByClassName('question');
+
+let radio1 = document.getElementById('one');
+let radio2 = document.getElementById('two');
+let radio3 = document.getElementById('three');
+let radio4 = document.getElementById('four');
+
+
+const submit = document.getElementById('submit').addEventListener('click', function(){
+    alert('haloo')
+})
