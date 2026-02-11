@@ -152,6 +152,17 @@ a {
 
 /* //////////////////////////////////// */
 
+.asideL{user-select: none; -webkit-user-drag: none;
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+}
+.asideR{
+    right: -5px;
+    user-select: none; -webkit-user-drag: none;
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+}
+
 #content-box1{
     position: absolute; top: 817px;
     display: grid; justify-self: center;
@@ -440,11 +451,13 @@ h1.map-start{
   vertical-align: middle;
 }
 
+
+
 #submit{
     scale: 1.05;
     color: #2B2DB1;
     font-size: 19px; font-family: 'Rimma-Sans';
-    position: absolute; left: -33px;
+    position: absolute; left: 50%; transform: translateX(-65%); top: 300px;
     margin: 38px; 
     height: 60px; width: 200px;
     border: #2B2DB1 3px solid;
@@ -455,4 +468,11 @@ h1.map-start{
     scale: 1.1;
     color: #FFFFFF;
     background-color: #2B2DB1;
+}
+
+#result{
+    width: 250px;
+    display: grid; justify-self: center;
+    position: absolute; left: 50%; top: 390px;
+    transform: translateX(-50%); 
 }
