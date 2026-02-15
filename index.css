@@ -157,7 +157,7 @@ a {
     transform: translateY(-50%);
 }
 .asideR{
-    right: -5px;
+    right: 0px;
     user-select: none; -webkit-user-drag: none;
     position: absolute; top: 50%;
     transform: translateY(-50%);
@@ -294,6 +294,7 @@ h1{
     position: absolute; top: 3390px;
     display: grid; justify-self: center;
     border: #2B2DB1 3px solid; border-top-left-radius: 62px; border-top-right-radius: 62px;
+    border-bottom: none;
     background-color: #FFFFFF;
     max-width: 1920px;
     width: 1918px;
@@ -475,4 +476,68 @@ h1.map-start{
     display: grid; justify-self: center;
     position: absolute; left: 50%; top: 390px;
     transform: translateX(-50%); 
+}
+
+/* подвал footer */
+
+#podval{
+    width: 1920px;
+    padding: 20px; padding-top: 40px;
+    border-top: #2B2DB1 3px solid;
+    position: absolute; bottom: 0px;
+}
+
+#navigfoot{
+    width: 30px;
+    user-select: none;
+    line-height: 28px;
+    font-family: 'Unbounded';
+    font-size: 26px;
+    position: relative; left: 56px;
+}
+.navigg{
+    transition: all 0.3s ease;}
+.navigg:hover{
+    font-size: 29px;
+}
+
+#creators{
+    color: #000000;
+    width: 30px;
+    user-select: none;
+    line-height: 28px;
+    font-family: 'Unbounded';
+    font-size: 25px;
+    position: absolute; left: 470px; bottom: 50px;
+}
+.navigg2{
+    transition: all 0.3s ease;}
+.navigg2:hover{
+    font-size: 28px;
+}
+
+#seti{
+    color: #000000;
+    width: 30px;
+    user-select: none;
+    line-height: 28px;
+    font-family: 'Unbounded';
+    font-size: 27px;
+    position: absolute; left: 850px; bottom: 85px;
+}
+.navigg3{
+    transition: all 0.3s ease;}
+.navigg3:hover{
+    font-size: 33px;
+}
+
+#Kod{width: 500px;
+    user-select: none;
+    font-family: 'Rimma-Sans';
+    font-size: 44px;
+    letter-spacing: 2px;
+    transition: all 0.25s ease;
+    position: absolute; right: 150px; top: 50%; transform: translateY(-50%);}
+#Kod:hover{
+    scale: 1.12;
 }
