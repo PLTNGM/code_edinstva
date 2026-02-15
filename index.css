@@ -541,3 +541,11 @@ h1.map-start{
 #Kod:hover{
     scale: 1.12;
 }
+
+#kodfoot{
+    user-select: none;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-size: 17px; font-family: 'Unbounded';
+    color: #606060be;
+    bottom: 10px;
+}
