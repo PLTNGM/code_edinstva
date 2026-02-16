@@ -588,7 +588,8 @@ h1.map-start{
 #focus-overlay.active {
     display: flex;
     opacity: 1;
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.156);
+    backdrop-filter: blur(12px);
 }
 
 #focus-content {
@@ -801,3 +802,27 @@ h1.map-start{
     
 }
 
+#region-data {
+    max-height: 550px;    /* Установи высоту, которая тебе нравится */
+    overflow-y: auto;     /* Появится скролл, только если контента реально много */
+    margin-top: 70px;
+    padding: 0 30px;
+    color:#2B2DB1;
+    text-align:justify;
+    font-family: "unbounded";
+    text-shadow: 0 0 10px rgba(253, 253, 253, 0.902); 
+    font-weight: 700;
+}
+
+.gallery img {
+    width: 100%;          /* Растягиваем на всю ширину колонки сетки */
+    height: 170px;        /* Фиксируем высоту */
+    object-fit: cover;    /* Магия: фото обрезается, но не сплющивается */
+    border-radius: 8px;   /* Скругляем углы под стиль глазморфизма */
+    margin-bottom: 10px;
+    transition: transform 0.2s; /* Плавное увеличение при наведении */
+}
+
+.gallery img:hover {
+    transform: scale(1.05); /* Легкий интерактив */
+}

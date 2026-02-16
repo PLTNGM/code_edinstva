@@ -13,7 +13,7 @@
 <header>
     <div id="zagolovok"><a href="{{ url_for('index') }}">код единства</a></div> 
             <div id="navig">
-                <a href="index.html"><p class="glavn">Главная</p></a>
+                <a href="{{ url_for('index') }}"><p class="glavn">Главная</p></a>
 
                 <a href="{{ url_for('forum') }}"><p class="forum">Форум</p></a>
 
@@ -251,20 +251,12 @@
             <svg id="focused-region-svg" viewBox="0 0 100 100"></svg>
             
             <div id="region-info">
+                
                 <h2 id="region-name">Название народа</h2>
-                
-                <!-- Контейнер для загрузки данных -->
-                <div id="region-data">
-                    <!-- Сюда будет вставляться:
-                    <div class="description">Текст о народе...</div>
-                    <div class="gallery">
-                        <img src="photo1.jpg" alt="Фото 1">
-                        <img src="photo2.jpg" alt="Фото 2">
-                        <img src="photo3.jpg" alt="Фото 3">
+                    <div id="region-data">
+                        <div id="region-gallery" class="gallery"></div>
+                        <div id="region-description"></div>                        
                     </div>
-                    -->
-                </div>
-                
                 <button class="back-btn" onclick="closeFocus()">←</button>
             </div>
         </div>

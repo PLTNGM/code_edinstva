@@ -187,39 +187,66 @@ document.getElementById('submit').addEventListener('click', function() {
 
 loadQuestion(0);
 
-// мапа
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.Active-region').forEach(region => {
         region.addEventListener('click', function() {
             const regionId = this.id;
-            const d = this.getAttribute('d'); // Берем координаты пути
-            
-            // ПОМЕНЯЛ: добавляем класс 'active' вместо изменения display напрямую
-            const overlay = document.getElementById('focus-overlay');
-            overlay.classList.add('active');
-            
-            // Клонируем путь в большое окно
-            const bigSvg = document.getElementById('focused-region-svg');
-            bigSvg.innerHTML = `<path d="${d}" fill="#2B2DB1">`;
-            
-            // Автоматически подгоняем размер
+            const d = this.getAttribute('d');
             const bbox = this.getBBox();
-            bigSvg.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
             
-            document.getElementById('region-name').innerText = regionId;
+            // Сначала идем в базу за данными
+            fetch(`/get_region/${regionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) return;
+
+                    // 1. Наполняем контентом
+                    document.getElementById('region-name').innerText = data.name;
+                    
+                    const descDiv = document.getElementById('region-description');
+                    if (descDiv) descDiv.innerText = data.text;
+
+                    const galleryDiv = document.getElementById('region-gallery');
+                    if (galleryDiv) {
+                        galleryDiv.innerHTML = ''; 
+                        data.images.forEach(img => {
+                            galleryDiv.innerHTML += `<img src="/static/img/resp_media/${img}" alt="photo">`;
+                        });
+                    }
+
+                    // 2. Рисуем SVG
+                    const bigSvg = document.getElementById('focused-region-svg');
+                    bigSvg.innerHTML = `<path d="${d}" fill="#2B2DB1">`;
+                    bigSvg.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+
+                    // 3. Показываем оверлей
+                    const overlay = document.getElementById('focus-overlay');
+                    overlay.style.display = 'flex'; // Сначала включаем видимость
+                    document.body.classList.add('no-scroll');
+                    
+                    const scrollBox = document.getElementById('region-data');
+                    if (scrollBox) scrollBox.scrollTop = 0;
+
+                    // Микро-задержка, чтобы анимация 'active' сработала плавно
+                    setTimeout(() => overlay.classList.add('active'), 10);
+                })
+                .catch(err => console.error("Ошибка:", err));
         });
     });
 });
 
-// закрывашка
 function closeFocus() {
     const overlay = document.getElementById('focus-overlay');
-    
-    // Добавляем класс для анимации закрытия
     overlay.classList.add('closing');
+    overlay.classList.remove('active'); // Снимаем активный класс сразу
     
-    // Ждем окончания анимации и скрываем
     setTimeout(() => {
-        overlay.classList.remove('active', 'closing');
-    }, 300); // Время должно совпадать с transition
+        overlay.style.display = 'none'; // Полностью скрываем только после анимации
+        overlay.classList.remove('closing');
+        document.body.classList.remove('no-scroll');
+        
+        // Чистим за собой, чтобы при следующем открытии не было "мерцания" старых данных
+        document.getElementById('region-gallery').innerHTML = '';
+        document.getElementById('focused-region-svg').innerHTML = '';
+    }, 300); 
 }
