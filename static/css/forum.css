@@ -7,13 +7,15 @@ body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1);}
     display: none;
 }
 
-@font-face{
+@font-face {
     font-family: 'Rimma-Sans';
-    src: url(fonts/RIMMA_SANS-BOLD.TTF);
+    /* ../ означает "выйти на уровень вверх" */
+    src: url('../fonts/RIMMA_SANS-BOLD.TTF');
 }
+
 @font-face {
     font-family: 'Unbounded';
-    src: url(fonts/Unbounded-Regular.ttf);
+    src: url('../fonts/Unbounded-Regular.ttf');
 }
 
 header { 

@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="forum.css">
+    <link rel="stylesheet" href="/static/css/forum.css">
     <title>Голоса России</title>
 </head>
 <body>
     
-    <img class="fon1" src="img/forumfon1.png">
+    <img class="fon1" src="static/img/forumfon1.png">
 
     <header>
-        <div id="zagolovok"><a href="index.html">код единства</a></div> 
+        <div id="zagolovok"><a href="{{ url_for('index') }}">код единства</a></div> 
                 <div id="navig">
-                    <a href="index.html"><p class="glavn">Главная</p></a>
+                    <a href="{{ url_for('index') }}"><p class="glavn">Главная</p></a>
 
-                    <a href="forum.html"><p class="forum">Форум</p></a>
+                    <a href="{{ url_for('forum') }}"><p class="forum">Форум</p></a>
 
                     <p class="translate">Переводчик</p>
                 </div>
@@ -39,12 +39,12 @@
         Этот форум — живая летопись народов России. Место, где северный ненец расскажет о танцах с оленями, кавказский горец — о секретах долголетия, а сибирская шаманка — о языке звёзд.
     </div>
 
-<img class="asideL" src="img/aside.png"><img class="asideR" src="img/aside.png">
+<img class="asideL" src="static/img/aside.png"><img class="asideR" src="static/img/aside.png">
 
     <h1 class="news">свежие истории:</h1>
 
     <div id="content-news">
-    <img class="asideL2" src="img/aside2.png"><img class="asideR2" src="img/aside2.png">
+    <img class="asideL2" src="static/img/aside2.png"><img class="asideR2" src="static/img/aside2.png">
     </div>
 
 <h1 class="foot">Оставляйте истории своих народов!</h1>
