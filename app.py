@@ -1,5 +1,6 @@
 import psycopg2
-from flask import Flask, render_template, jsonify
+from deep_translator import GoogleTranslator
+from flask import Flask, render_template, jsonify, request
 
 
 
@@ -117,7 +118,7 @@ def get_forum_posts():
                 "avatar": row[2],
                 "idea": row[3],
                 "text": row[4],
-                "images": row[5] if row[5] else [] # Если картинок нет, отдаем пустой список
+                "images": row[5] if row[5] else []
             })
             
         return jsonify(posts)
@@ -128,6 +129,49 @@ def get_forum_posts():
         cur.close() # ОБЯЗАТЕЛЬНО
         conn.close()
 
+# переводчик
+MANUAL_TRANSLATE = { #заглушка для демо версии
+    "krl": { # Карельский
+        "Привет": "Terveh",
+        "Добро пожаловать": "Tulgua tervehenä",
+        "Как дела?": "Kui aziet?",
+        "Спасибо": "Passibo"
+    },
+    "yrk": { # Ненецкий
+        "Привет": "Ет’ тын’",
+        "Добро пожаловать": "Ет’ тын’!",
+        "Спасибо": "Тат’ тын’"
+    },
+    "udm": { # Удмуртский
+        "Привет": "Ӟечбуресь",
+        "Как дела?": "Кызьы улон-вылонъёс?"
+    }
+}
+
+@app.route('/api/translate_standalone', methods=['POST'])
+def translate_standalone():
+    data = request.json
+    text = data.get('text', '').strip()
+    target = data.get('lang', 'tt')
+
+    # 1. Сначала ищем в ручном словаре (точное совпадение)
+    if target in MANUAL_TRANSLATE:
+        if text in MANUAL_TRANSLATE[target]:
+            return jsonify({"result": MANUAL_TRANSLATE[target][text]})
+        else:
+            # Если фразы нет в словаре, можно либо пробовать Google, 
+            # либо честно сказать, что база пополняется
+            return jsonify({"result": f"[{target.upper()}] База данных пополняется..."})
+
+    # 2. Для остальных (Татарский 'tt', Башкирский 'ba', Чувашский 'cv') юзаем Google
+    try:
+        # Переводчик сам поймет, что исходный язык - русский
+        translated = GoogleTranslator(source='auto', target=target).translate(text)
+        return jsonify({"result": translated})
+    except Exception as e:
+        print(f"Ошибка перевода: {e}")
+        return jsonify({"result": "Сервис временно недоступен"}), 500
+
 # общий бек страниц
 @app.route("/")
 def index():
@@ -136,6 +180,10 @@ def index():
 @app.route("/forum")
 def forum():
     return render_template('forum.html')
+
+@app.route("/translate")
+def translate():
+    return render_template('translate.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -144,31 +144,68 @@ a {
     font-size: 21px; font-family: 'Unbounded';
 }
 
-#input{
-    position: absolute; right: 0px; top: 140px;
-    margin: 30px;
-    border: #2B2DB1 3px solid;
-    width: 800px; height: 260px;
-    border-radius: 30px;
+#window{display: flex;
+    flex-direction: column;
+    gap: 100px;
+    position: relative;
+    left: 62%;
+    margin-top: 3%;
 }
 
-#output{
-    position: absolute; right: 0px; bottom: 80px;
-    margin: 30px;
-    border: #2B2DB1 3px solid;
-    width: 800px; height: 260px;
-    border-radius: 30px;
+#upper-box, #lower-box { 
+    width: 30%; /* Или твоя ширина из макета */
+    height: 260px;
+    background-color: #f5f4ffd3; /* Если хочешь эффект стекла */
+    border: 2px solid #2B2DB1;
+    border-radius: 20px;
+    padding: 20px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    color: #2B2DB1;
+    outline: none; /* Убирает синюю рамку при клике */
 }
 
-#okno{
-    opacity: 0; z-index: -100;
+/* Стиль для плейсхолдера (текст-подсказка) */
+#upper-box::placeholder {
+    color: rgba(43, 45, 177, 0.5);
+}
+
+/* Обнови этот блок */
+#okno {
+    display: none; /* Вместо opacity юзаем display для начала */
     box-shadow: 2px 2px 1px 2px #2B2DB1;
     background-color: #f5f4ffd3;
-    width: 300px; height: 120px; margin: 41px;
+    width: 300px; 
+    height: auto;
     border: #2B2DB1 2px solid;
-    border-top-right-radius: 5px; border-bottom-left-radius: 5px;
-    border-top-left-radius: 45px; border-bottom-right-radius: 30px;
-    position: absolute; right: 0px; top: 260px;
+    border-radius: 20px;
+    position: absolute; 
+    right: 0; 
+    top: 50px; /* Отрегулируй под кнопку */
+    z-index: 1005;
+}
+
+/* Эти классы будем вешать через JS для анимации */
+.show-okno {
+    display: flex !important;
+    animation: oknoanim 0.2s ease-in forwards;
+}
+
+.hide-okno {
+    animation: oknoend 0.2s ease-out forwards;
+}
+
+.lang-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: 'Unbounded', sans-serif;
+    color: #2B2DB1;
+    transition: background 0.2s;
+    border-radius: 10px;
+}
+
+.lang-item:hover {
+    background: rgba(43, 45, 177, 0.1); /* Легкий подсвет при наведении */
 }
 
 @keyframes oknoanim{

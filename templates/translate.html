@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/translate.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/translate.css') }}">
     <title>Языки народов</title>
 </head>
 <body>
@@ -24,16 +24,22 @@
         <h1 class="txt1">Переводчик на языки <br> народов</h1>
     </div>
 
-    <div id="input"> </div>
-
         <div class="transl"><h1>Русский — Татарский</h1></div>
         
-        <div id="okno"> </div>
+        <div id="okno">
+            <div class="lang-item" data-lang="tt">Татарский</div>
+            <div class="lang-item" data-lang="ba">Башкирский</div>
+            <div class="lang-item" data-lang="sah">Якутский</div>
+            <div class="lang-item" data-lang="udm">Удмуртский</div>
+            <div class="lang-item" data-lang="krl">Карельский</div>
+            <div class="lang-item" data-lang="yrk">Ненецкий</div>
+        </div>
             <button id="langs">^</button>
-        
-    
-    <div id="output"> </div>
 
+    <div id="window">    
+        <textarea id="upper-box" placeholder="Введите текст на русском..."></textarea>
+        <textarea id="lower-box" placeholder="Тут будет перевод..." readonly></textarea>
+    </div>
 
 <footer id="podval">
     <div id="navigfoot">
@@ -60,6 +66,6 @@
 </footer>
 
 
-<script src="/static/js/translate.js"></script>
+<script src="{{ url_for('static', filename='js/translate.js') }}"></script>
 </body>
 </html>
