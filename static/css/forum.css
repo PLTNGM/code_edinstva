@@ -154,16 +154,28 @@ a {
 
 /* //////////////////////////////////// */
 
-#content-box1{
+#content-box1 {
     letter-spacing: 1px;
     color: #2B2DB1;
-    position: absolute; top: 817px;
-    display: grid; justify-self: center;
-    border: #2B2DB1 3px solid; border-top-left-radius: 62px; border-top-right-radius: 62px;
+    position: absolute; 
+    top: 817px;
+    display: flex;          /* Заменил grid на flex для вертикального стека */
+    flex-direction: column; 
+    align-items: center;
+    
+    border: #2B2DB1 3px solid; 
+    border-top-left-radius: 62px; 
+    border-top-right-radius: 62px;
     background-color: #FFFFFF;
+    
     max-width: 1920px;
-    width: 1918px;
-    height: 3420px;
+    width: 100%;            /* Чтобы на разных экранах не лезло в бок */
+    
+    /* ГЛАВНЫЕ ПРАВКИ ТУТ: */
+    height: auto;           /* Убираем 3420px! Теперь высота зависит от контента */
+    min-height: 100vh;      /* Минимум на всю высоту экрана */
+    padding-bottom: 500px;  /* Место под футер, чтобы посты не втыкались в него */
+    
     z-index: 2;
 }
 
@@ -184,7 +196,8 @@ h1{
 
 /* //////////////////////////////////// */
 
-.asideL{user-select: none; -webkit-user-drag: none;
+.asideL{left: 0px;
+    user-select: none; -webkit-user-drag: none;
     position: absolute; top: 260px
 }
 .asideR{
@@ -218,16 +231,21 @@ h1{
     position: absolute; top: 50%; transform: translateY(-50%); scale: 0.9;
 }
 
-#content-news{
-    background-color: #f1f1f1;
-    position: absolute; left: 50%; transform: translateX(-50%);
-    top: 950px;
-    width: 940px; height: 2000px;
-    border: #2B2DB1 3px solid; border-radius: 30px;
+.content-news {
+    background-color: #ffffff;
+    /* Убираем absolute, чтобы блоки шли друг за другом */
+    position: relative; 
+    width: 940px;
+    border: #2B2DB1 3px solid; 
+    border-radius: 30px;
     box-shadow: 3px 3px 1px 3px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto; 
+    padding: 30px 20px;
 }
-
-
 
 .foot{
     font-size: 35px;
@@ -304,4 +322,79 @@ h1{
     font-size: 17px; font-family: 'Unbounded';
     color: #606060be;
     bottom: 10px;
+}
+
+/* форум */
+#main-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 150px; /* Расстояние между постами */
+    padding-top: 800px; /* Весь отступ сверху переносим сюда */
+    width: 100%;
+}
+
+.forum-item {
+    width: 900px; /* Центрируем саму карточку и даем отступ снизу */
+    padding: 25px;            /* Внутренний отступ, чтобы контент не касался границ */
+    background: rgba(255, 255, 255, 0.07); /* Тот самый стеклянный эффект */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-sizing: border-box;    /* ВАЖНО: чтобы padding не увеличивал ширину блока больше 900px */
+    color: white;
+}
+
+.forum-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.forum-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 40px;
+    object-fit: cover;
+}
+
+.forum-username {
+    display: flex;
+    color:#2B2DB1;
+    font-size: 50px;
+    font-family: "unbounded";
+    margin: auto 10px
+}
+
+.forum-body {
+    margin-top: 20px;
+}
+
+.forum-idea {
+    color:#2B2DB1;
+    font-size: 50px;
+    font-family: "unbounded";
+}
+
+.forum-media-img {
+    object-fit: cover;
+    width: 271px;
+    height: 279px;
+    border-radius: 15px;
+    margin: 4px;
+    transition: all 0.3s ease;
+}
+
+.forum-media-img:hover {
+    scale: 1.1;;
+}
+
+.forum-gallery {
+    margin-top: 30px;
+}
+
+.forum-text {
+    color: #2B2DB1;
+    font-size: 40px;
+    text-align: start;
+    font-family: "unbounded";
 }

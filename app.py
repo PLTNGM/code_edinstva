@@ -33,6 +33,25 @@ def init_db():
         img_adress TEXT
     );
     ''')
+
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS post_forum (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        avatar TEXT,
+        post_idea VARCHAR(150),
+        text TEXT
+        );
+    ''')
+
+    cur.execute('''
+    CREATE TABLE IF NOT EXISTS media_post (
+        id SERIAL PRIMARY KEY,
+        id_post INTEGER REFERENCES post_forum(id) ON DELETE CASCADE,
+        img_adress TEXT        
+        );
+    ''')
+
     conn.commit()
     cur.close()
     conn.close()
@@ -72,6 +91,42 @@ def get_region(name):
         "images": images
     })
 
+# форум
+@app.route('/api/get_forum_posts')
+def get_forum_posts():
+    conn = connection()
+    cur = conn.cursor()
+    try:
+        # Используем array_agg, чтобы собрать все картинки поста в один список
+        cur.execute('''
+            SELECT 
+                p.id, p.name, p.avatar, p.post_idea, p.text,
+                array_agg(m.img_adress) FILTER (WHERE m.img_adress IS NOT NULL) as images
+            FROM post_forum p
+            LEFT JOIN media_post m ON p.id = m.id_post
+            GROUP BY p.id
+            ORDER BY p.id DESC;
+        ''')
+        
+        rows = cur.fetchall()
+        posts = []
+        for row in rows:
+            posts.append({
+                "id": row[0],
+                "name": row[1],
+                "avatar": row[2],
+                "idea": row[3],
+                "text": row[4],
+                "images": row[5] if row[5] else [] # Если картинок нет, отдаем пустой список
+            })
+            
+        return jsonify(posts)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.commit()
+        cur.close() # ОБЯЗАТЕЛЬНО
+        conn.close()
 
 # общий бек страниц
 @app.route("/")
