@@ -129,7 +129,7 @@ def get_forum_posts():
         cur.close() # ОБЯЗАТЕЛЬНО
         conn.close()
 
-# переводчик
+# переводчик (временно)
 MANUAL_TRANSLATE = { #заглушка для демо версии
     "krl": { # Карельский
         "Привет": "Terveh",
@@ -163,9 +163,7 @@ def translate_standalone():
             # либо честно сказать, что база пополняется
             return jsonify({"result": f"[{target.upper()}] База данных пополняется..."})
 
-    # 2. Для остальных (Татарский 'tt', Башкирский 'ba', Чувашский 'cv') юзаем Google
     try:
-        # Переводчик сам поймет, что исходный язык - русский
         translated = GoogleTranslator(source='auto', target=target).translate(text)
         return jsonify({"result": translated})
     except Exception as e:
