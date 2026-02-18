@@ -1,7 +1,8 @@
 *{margin: 0px;
     padding: 0px;}
 
-body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1);}
+body{background: radial-gradient(circle ,#2b2db1c5, #4447e0c5, #2B2DB1); 
+overflow-x: hidden;}
 
 ::-webkit-scrollbar {
     display: none;

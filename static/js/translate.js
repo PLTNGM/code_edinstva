@@ -30,13 +30,22 @@ function closeMenu() {
     }, 200);
 }
 
-// ВЫБОР ЯЗЫКА
+// ОБНОВЛЕННЫЙ ВЫБОР ЯЗЫКА
 okno.onclick = function(e) {
-    if (e.target.classList.contains('lang-item')) {
-        currentLang = e.target.getAttribute('data-lang');
-        document.querySelector('.transl h1').innerText = `Русский — ${e.target.innerText}`;
+    let item = e.target.closest('.lang-item'); // Ищем именно элемент списка
+    if (item) {
+        currentLang = item.getAttribute('data-lang');
+        let langName = item.innerText;
+        
+        // Обновляем заголовок
+        document.querySelector('.transl h1').innerText = `Русский — ${langName}`;
+        
         closeMenu();
-        runTranslation(); // Сразу переводим
+        
+        // Если в верхнем боксе уже есть текст — переводим его на новый язык
+        if (document.getElementById('upper-box').value.trim()) {
+            runTranslation();
+        }
     }
 };
 
@@ -56,3 +65,12 @@ async function runTranslation() {
     let data = await response.json();
     output.value = data.result; // .value для textarea!
 }
+
+// Добавь это в конец JS файла
+document.getElementById('upper-box').addEventListener('input', function() {
+    // Делаем небольшую задержку (debounce), чтобы не спамить запросами на каждый символ
+    clearTimeout(window.translateTimeout);
+    window.translateTimeout = setTimeout(() => {
+        runTranslation();
+    }, 500); // Переведет через полсекунды после того, как юзер замолчал
+});
