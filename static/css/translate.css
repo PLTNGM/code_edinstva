@@ -138,22 +138,16 @@ a {
 }
 
 .transl{
-    position: absolute; right: 128px; top: 430px;
-    margin: 30px;
     text-align: start; color: #2B2DB1;
     font-size: 21px; font-family: 'Unbounded';
-}
-
-#window{display: flex;
-    flex-direction: column;
-    gap: 100px;
     position: relative;
-    left: 62%;
-    margin-top: 3%;
+    margin-right: 8%;
+    margin-top: 2%;
+    margin-bottom: 3%;
 }
 
 #upper-box, #lower-box { 
-    width: 30%; /* Или твоя ширина из макета */
+    width: 600px; /* Или твоя ширина из макета */
     height: 260px;
     background-color: #f5f4ffd3; /* Если хочешь эффект стекла */
     border: 2px solid #2B2DB1;
@@ -170,19 +164,25 @@ a {
     color: rgba(43, 45, 177, 0.5);
 }
 
-/* Обнови этот блок */
 #okno {
     display: none; /* Вместо opacity юзаем display для начала */
+    flex-direction: column;
     box-shadow: 2px 2px 1px 2px #2B2DB1;
     background-color: #f5f4ffd3;
     width: 300px; 
     height: auto;
     border: #2B2DB1 2px solid;
-    border-radius: 20px;
+    border-bottom-right-radius: 30px ;
+    border-top-left-radius: 30px;
     position: absolute; 
     right: 0; 
-    top: 50px; /* Отрегулируй под кнопку */
-    z-index: 1005;
+    top: 24%; /* Появится прямо под кнопкой */
+    left: 74%;
+    transform: translateX(-50%);
+
+    max-height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Эти классы будем вешать через JS для анимации */
@@ -193,6 +193,17 @@ a {
 
 .hide-okno {
     animation: oknoend 0.2s ease-out forwards;
+}
+
+#transl-okno {
+    position: relative; /* Чтобы окно позиционировалось относительно этого блока */
+    width: fit-content; /* Ширина по контенту */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2000;
+    margin-left: 63%;
+    margin-top: 3%;
 }
 
 .lang-item {
@@ -208,36 +219,48 @@ a {
     background: rgba(43, 45, 177, 0.1); /* Легкий подсвет при наведении */
 }
 
-@keyframes oknoanim{
-    0%{
-        transform: translateY(30px); opacity: 0; 
+@keyframes oknoanim {
+    0% {
+        transform: translate(-50%, 30px); /* Сохраняем X и двигаем Y */
+        opacity: 0; 
     }
-    100%{
+    100% {
+        transform: translate(-50%, 0); /* Сохраняем центровку */
         opacity: 1;
     }
 }
 
-@keyframes oknoend{
-    0%{
+@keyframes oknoend {
+    0% {
+        transform: translate(-50%, 0);
         opacity: 1;
     }
-    100%{
-        transform: translateY(30px); opacity: 0;
+    100% {
+        transform: translate(-50%, 30px);
+        opacity: 0;
     }
 }
 
 /* //////////////////////////////////// */
 
 
-
 #langs {
+    display: block; /* Чтобы размеры считались корректно */
+    background: none;
+    border: none;
+    outline: none;
+    position: absolute;
+    bottom: 45%;
+    left: 90%;
     transform: rotate(-90deg);
     color: #2B2DB1;
-    position: absolute; right: 94px; top: 452px;
+    cursor: pointer;
     font-size: 65px;
     font-family: 'Unbounded';
     transition: transform 0.4s ease-out, scale 0.3s ease;
+    z-index: 2001; /* Поверх всего */
 }
+
 #langs:hover{
     scale: 1.25;
 }
