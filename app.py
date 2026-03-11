@@ -1,13 +1,17 @@
+import os
 import psycopg2
 from deep_translator import GoogleTranslator
 from flask import Flask, render_template, jsonify, request
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 DB_CONFIG = {
-    "database": "Edinstvo",
-    "user": "postgres",
-    "password": "q20081004",
+    "database": os.getenv("DB_NAME"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASS"),
     "host": "localhost",
     "port": "5432",
 }
